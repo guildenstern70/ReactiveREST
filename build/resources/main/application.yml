@@ -1,0 +1,14 @@
+spring:
+  r2dbc:
+    url: r2dbc:h2:file:///./data/reactrest.db
+  output:
+    ansi:
+      enabled: ALWAYS
+  h2:
+    console:
+      enabled: true
+      path: /h2
+logging:
+  level:
+    org.springframework.r2dbc: DEBUG
+
