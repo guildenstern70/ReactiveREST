@@ -11,7 +11,8 @@ For further reference, please consider the following sections:
 ### Guides
 The following guides illustrate how to use some features concretely:
 
-* [Acessing data with R2DBC](https://spring.io/guides/gs/accessing-data-r2dbc/)
+* [Accessing data with R2DBC](https://spring.io/guides/gs/accessing-data-r2dbc/)
+* [R2DBC Examples](https://github.com/hantsy/spring-r2dbc-sample)
 
 ### Additional Links
 These additional references should also help you:

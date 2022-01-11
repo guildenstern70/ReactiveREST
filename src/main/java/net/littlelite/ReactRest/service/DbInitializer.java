@@ -37,7 +37,7 @@ public class DbInitializer implements ApplicationRunner
     {
         logger.info("Populating Database");
         this.template.getDatabaseClient().sql("CREATE TABLE IF NOT EXISTS person" +
-                        "(id VARCHAR(255) PRIMARY KEY," +
+                        "(id bigint auto_increment PRIMARY KEY," +
                         "name VARCHAR(255)," +
                         "surname VARCHAR(255)," +
                         "age INT)")
@@ -53,7 +53,7 @@ public class DbInitializer implements ApplicationRunner
         {
             logger.info("Person Table is empty. Populating it now.");
             this.template.insert(Person.class)
-                    .using(new Person(1899130L, "Joe", "Doe", 34))
+                    .using(new Person("Joe", "Doe", 34))
                     .block();
 
             this.template.select(Person.class)

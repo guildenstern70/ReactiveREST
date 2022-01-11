@@ -6,34 +6,29 @@
 
 package net.littlelite.ReactRest.model;
 
+import lombok.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
-import java.util.Objects;
 
-public record Person(@Id Long id, String name, String surname, int age)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Person
 {
-    boolean hasId()
-    {
-        return id != null;
-    }
+    @Id
+    Long id;
+    @NonNull
+    String name;
+    @NonNull
+    String surname;
+    int age;
 
-    @Override
-    public boolean equals(Object o)
+    public Person(@NotNull String name, @NotNull String surname, int age)
     {
-        if (this == o)
-        {
-            return true;
-        }
-        if (!(o instanceof Person person))
-        {
-            return false;
-        }
-        return Objects.equals(name, person.name) && Objects.equals(surname, person.surname);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(name, surname);
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
     }
 }

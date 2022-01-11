@@ -13,9 +13,8 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-interface PersonRepository extends ReactiveCrudRepository<Person, Long>
+public interface PersonRepository extends ReactiveCrudRepository<Person, Long>
 {
-
     Flux<Person> findByName(String name);
     Flux<Person> findBySurname(String surname);
 
