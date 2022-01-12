@@ -43,7 +43,7 @@
                         <small class="text-secondary">React REST v.<span id="version">${version}</span></small>
                     </div>
                     <div class="mt-4">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">API
+                        <a class="btn btn-primary btn-lg" href="/swagger-ui.html" role="button">API
                             Documentation</a>
                         &nbsp;
                         <a class="btn btn-success btn-lg" href="/h2" role="button">H2 DB Console</a>

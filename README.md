@@ -1,4 +1,4 @@
-# React REST
+# Reactive REST
 
 A template project for Reactive REST API featuring:
 

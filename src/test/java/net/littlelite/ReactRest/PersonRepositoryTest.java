@@ -46,7 +46,7 @@ public class PersonRepositoryTest
     void addNewPerson()
     {
         var person = new Person("Elena", "Zambrelli", 20);
-        var savedPerson = this.personRepository.save(person).block();
+        this.personRepository.save(person).block();
         this.personRepository.findById(791279L).doOnNext(
                 foundPerson -> {
                     assertThat(foundPerson).isNotNull();
