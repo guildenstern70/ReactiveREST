@@ -17,7 +17,7 @@ import org.springframework.core.env.Environment;
 @SpringBootApplication
 public class ReactRestApplication implements CommandLineRunner
 {
-	public static final String VERSION = "0.0.1";
+	public static final String VERSION = "0.0.2";
 
 	private final Logger logger = LoggerFactory.getLogger(ReactRestApplication.class);
 

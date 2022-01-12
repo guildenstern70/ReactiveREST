@@ -25,4 +25,7 @@ public interface PersonRepository extends ReactiveCrudRepository<Person, Long>
     @Query("SELECT * FROM person WHERE surname = :#{[0]}")
     Flux<Person> findByQueryWithExpression(String surname);
 
+    @Query("SELECT * FROM person WHERE age >= :#{[0]}")
+    Flux<Person> findPersonsWithAge(int age);
+
 }

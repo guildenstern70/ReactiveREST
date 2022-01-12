@@ -10,7 +10,6 @@ import lombok.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,3 +31,5 @@ public class Person
         this.age = age;
     }
 }
+
+
