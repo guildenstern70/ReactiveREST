@@ -9,24 +9,38 @@ package net.littlelite.ReactRest.handler;
 import lombok.RequiredArgsConstructor;
 import net.littlelite.ReactRest.model.Person;
 import net.littlelite.ReactRest.repository.PersonRepository;
+import net.littlelite.ReactRest.service.DbInitializer;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
+
+import java.net.URI;
+import java.util.Objects;
+
+import static org.springframework.web.reactive.function.server.ServerResponse.noContent;
+import static org.springframework.web.reactive.function.server.ServerResponse.notFound;
+
 
 @Component
 @RequiredArgsConstructor
 public class PersonHandler
 {
     private final PersonRepository personRepository;
+    protected static final Logger logger = LoggerFactory.getLogger(PersonHandler.class);
 
     public @NotNull Mono<ServerResponse> getPersonById(@NotNull ServerRequest request)
     {
         var id = Long.parseLong(request.pathVariable("id"));
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(this.personRepository.findById(id), Person.class);
+                .body(this.personRepository.findById(id), Person.class)
+                .switchIfEmpty(notFound().build());
     }
 
     public @NotNull Mono<ServerResponse> getPersonsByAge(@NotNull ServerRequest request)
@@ -40,5 +54,27 @@ public class PersonHandler
     {
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(this.personRepository.findAll(), Person.class);
+    }
+
+    public @NotNull Mono<ServerResponse> createPerson(@NotNull ServerRequest request)
+    {
+        return request.bodyToMono(Person.class)
+                .flatMap(this.personRepository::save)
+                .doOnSuccess( person -> logger.info("Person saved with id: " + person.getId()))
+                .doOnError(e -> logger.error("Error in save person method", e))
+                .map( savedPerson -> UriComponentsBuilder
+                        .fromPath(("/api/persons/{id}"))
+                        .buildAndExpand(savedPerson.getId())
+                        .toUri())
+                .flatMap( uri -> ServerResponse.created(uri).build());
+    }
+
+    public @NotNull Mono<ServerResponse> deletePerson(@NotNull ServerRequest request)
+    {
+        final long id = Long.parseLong(request.pathVariable("id"));
+        return this.personRepository
+                .findById(id)
+                .flatMap(p -> noContent().build(this.personRepository.delete(p)))
+                .switchIfEmpty(notFound().build());
     }
 }
