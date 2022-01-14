@@ -13,16 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import reactor.test.StepVerifier;
-
-import java.time.Duration;
+import org.springframework.test.context.ContextConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@ContextConfiguration
 public class PersonRepositoryTest
 {
-    private static final Duration TIMEOUT = Duration.ofSeconds(4);
     private final Logger logger = LoggerFactory.getLogger(PersonRepositoryTest.class);
 
     @Autowired
@@ -55,15 +53,11 @@ public class PersonRepositoryTest
         logger.info("Before add => " + countBefore + " items.");
         var savedPerson = this.personRepository.save(person).block();
         assertThat(savedPerson).isNotNull();
+        var countAfter = this.personRepository.count().block();
+        assertThat(countAfter).isEqualTo(countBefore + 1);
         logger.info("Person saved with ID = " + savedPerson.getId());
-        this.personRepository.findAll()
-                .as(StepVerifier::create)
-                .expectNextCount(countBefore + 1)
-                .verifyComplete();
         this.personRepository.deleteById(savedPerson.getId()).block();
-        this.personRepository.count()
-                .as(StepVerifier::create)
-                .expectNextCount(countBefore)
-                .verifyComplete();
+        var countAfterDelete = this.personRepository.count().block();
+        assertThat(countAfterDelete).isEqualTo(countBefore);
     }
 }

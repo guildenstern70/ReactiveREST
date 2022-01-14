@@ -9,25 +9,21 @@ package net.littlelite.ReactRest.handler;
 import lombok.RequiredArgsConstructor;
 import net.littlelite.ReactRest.model.Person;
 import net.littlelite.ReactRest.repository.PersonRepository;
-import net.littlelite.ReactRest.service.DbInitializer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
-import java.util.Objects;
-
 import static org.springframework.web.reactive.function.server.ServerResponse.noContent;
 import static org.springframework.web.reactive.function.server.ServerResponse.notFound;
 
 
+@SuppressWarnings("ClassCanBeRecord")
 @Component
 @RequiredArgsConstructor
 public class PersonHandler
