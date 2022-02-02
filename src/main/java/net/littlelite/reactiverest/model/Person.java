@@ -4,7 +4,7 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.model;
+package net.littlelite.reactiverest.model;
 
 import lombok.*;
 import org.jetbrains.annotations.NotNull;

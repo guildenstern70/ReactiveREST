@@ -4,11 +4,11 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.handler;
+package net.littlelite.reactiverest.handler;
 
 import lombok.RequiredArgsConstructor;
-import net.littlelite.ReactRest.model.Person;
-import net.littlelite.ReactRest.repository.PersonRepository;
+import net.littlelite.reactiverest.model.Person;
+import net.littlelite.reactiverest.repository.PersonRepository;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

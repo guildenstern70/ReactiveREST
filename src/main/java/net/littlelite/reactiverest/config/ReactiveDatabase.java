@@ -4,7 +4,7 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.config;
+package net.littlelite.reactiverest.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;

@@ -4,9 +4,9 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.service;
+package net.littlelite.reactiverest.service;
 
-import net.littlelite.ReactRest.model.Person;
+import net.littlelite.reactiverest.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

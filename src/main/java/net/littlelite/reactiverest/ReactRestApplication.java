@@ -4,7 +4,7 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest;
+package net.littlelite.reactiverest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

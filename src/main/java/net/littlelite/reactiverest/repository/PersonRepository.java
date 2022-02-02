@@ -4,9 +4,9 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.repository;
+package net.littlelite.reactiverest.repository;
 
-import net.littlelite.ReactRest.model.Person;
+import net.littlelite.reactiverest.model.Person;
 import org.springframework.data.r2dbc.repository.Modifying;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

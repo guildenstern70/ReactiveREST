@@ -4,10 +4,10 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest;
+package net.littlelite.reactiverest;
 
-import net.littlelite.ReactRest.model.Person;
-import net.littlelite.ReactRest.repository.PersonRepository;
+import net.littlelite.reactiverest.model.Person;
+import net.littlelite.reactiverest.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +27,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration
 public class WebClientTest
 {
-    private final Logger logger = LoggerFactory.getLogger(WebClientTest.class);
     private static final Duration TIMEOUT = Duration.ofSeconds(4);
 
     @Autowired

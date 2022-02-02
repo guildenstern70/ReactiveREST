@@ -4,19 +4,18 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest.router.rest;
+package net.littlelite.reactiverest.router.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.enums.Explode;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.enums.ParameterStyle;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import net.littlelite.ReactRest.handler.PersonHandler;
-import net.littlelite.ReactRest.model.Person;
+import net.littlelite.reactiverest.handler.PersonHandler;
+import net.littlelite.reactiverest.model.Person;
 import org.jetbrains.annotations.NotNull;
 import org.springdoc.core.annotations.RouterOperation;
 import org.springdoc.core.annotations.RouterOperations;

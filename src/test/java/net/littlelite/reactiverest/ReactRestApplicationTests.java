@@ -4,7 +4,7 @@
  * This software is licensed under MIT License (see LICENSE)
  */
 
-package net.littlelite.ReactRest;
+package net.littlelite.reactiverest;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
