@@ -36,7 +36,6 @@ public class DbInitializer implements ApplicationRunner
     public void run(ApplicationArguments args)
     {
         logger.info("Populating Database");
-        var factory = this.template.getDatabaseClient().getConnectionFactory();
         this.template.getDatabaseClient().sql("CREATE TABLE IF NOT EXISTS person" +
                         "(id bigint auto_increment PRIMARY KEY," +
                         "name VARCHAR(255)," +
