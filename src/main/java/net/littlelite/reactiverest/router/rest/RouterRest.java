@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import net.littlelite.reactiverest.handler.CommonHandler;
 import net.littlelite.reactiverest.handler.PersonHandler;
 import net.littlelite.reactiverest.model.Person;
 import org.jetbrains.annotations.NotNull;
@@ -97,15 +98,23 @@ public class RouterRest
                     path = "/api/persons",
                     beanClass = PersonHandler.class,
                     beanMethod = "deletePerson"),
+            @RouterOperation(
+                    method = RequestMethod.GET,
+                    path = "/api/common/version",
+                    beanClass = CommonHandler.class,
+                    beanMethod = "getVersion"),
     })
-    public RouterFunction<ServerResponse> root(@NotNull PersonHandler personHandler)
+    public RouterFunction<ServerResponse> root(
+            @NotNull PersonHandler personHandler,
+            @NotNull CommonHandler commonHandler)
     {
         return RouterFunctions
                 .route(GET(      "/api/persons/{id}").and(accept(MediaType.APPLICATION_JSON)), personHandler::getPersonById)
                 .andRoute(GET(   "/api/persons/age/{age}").and(accept(MediaType.APPLICATION_JSON)), personHandler::getPersonsByAge)
                 .andRoute(GET(   "/api/persons").and(accept(MediaType.APPLICATION_JSON)), personHandler::getAllPersons)
                 .andRoute(POST(  "/api/persons").and(accept(MediaType.APPLICATION_JSON)).and(contentType(MediaType.APPLICATION_JSON)), personHandler::createPerson)
-                .andRoute(DELETE("/api/persons/{id}"), personHandler::deletePerson);
+                .andRoute(DELETE("/api/persons/{id}"), personHandler::deletePerson)
+                .andRoute(GET(   "/api/common/version"), commonHandler::getVersion);
 
     }
 }

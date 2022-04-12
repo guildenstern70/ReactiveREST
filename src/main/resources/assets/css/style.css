@@ -1,0 +1,17 @@
+/*
+ * Project ReactREST
+ * Copyright (c) Alessio Saltarin 2022
+ * This software is licensed under MIT License (see LICENSE)
+ */
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin: 1rem 0 5rem 0;
+    background-color: #d3d3e7;
+    border-radius: .3rem;
+    display: block;
+}
+
+.jumbotitle {
+    font-weight: bold;
+}

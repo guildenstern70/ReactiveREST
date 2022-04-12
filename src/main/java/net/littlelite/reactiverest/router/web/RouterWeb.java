@@ -41,4 +41,19 @@ public class RouterWeb
                 new ClassPathResource("assets/img/"));
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> javascriptRouter()
+    {
+        return RouterFunctions.resources("/assets/js/**",
+                new ClassPathResource("assets/js/"));
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> cssRouter()
+    {
+        return RouterFunctions.resources("/assets/css/**",
+                new ClassPathResource("assets/css/"));
+    }
+
+
 }
