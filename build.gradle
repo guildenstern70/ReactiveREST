@@ -1,54 +1,53 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.6'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'org.springframework.boot' version '3.0.2'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'org.asciidoctor.convert' version '2.4.0'
 }
 
 group = 'net.littlelite'
-version = '0.0.2'
+version = '0.0.3'
+sourceCompatibility = '19'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
 	mavenCentral()
 }
 
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.springframework.restdocs:spring-restdocs-webtestclient'
-	implementation 'org.jetbrains:annotations:23.0.0'
-	implementation 'io.projectreactor:reactor-test'
-	implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.6'
-
+	implementation 'org.jetbrains:annotations:24.0.0'
+	implementation 'io.projectreactor:reactor-test:3.5.2'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.0.2'
 	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'io.r2dbc:r2dbc-h2'
 
-	testCompileOnly 'org.projectlombok:lombok'
-	testAnnotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.assertj:assertj-core'
 }
 
-java {
-	sourceCompatibility = JavaVersion.VERSION_17
-	targetCompatibility = JavaVersion.VERSION_17
-}
-
-compileJava {
-	options.encoding = 'UTF-8'
-	options.compilerArgs << '-parameters'
-}
-
-compileTestJava {
-	options.encoding = 'UTF-8'
-}
-
-test {
+tasks.named('test') {
+	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
+
+tasks.named('asciidoctor') {
+	inputs.dir snippetsDir
+	dependsOn test
+}
+
 
