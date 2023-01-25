@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: eclipse-temurin:19-jdk-focal
+      - image: gradle:jdk19-alpine
 
     working_directory: ~/repo
 
