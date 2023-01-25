@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:19-buster-node
+      - image: eclipse-temurin:19-jdk-focal
 
     working_directory: ~/repo
 
