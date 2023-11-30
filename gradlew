@@ -2,7 +2,7 @@
 
 #
 # Project ReactREST
-# Copyright (c) Alessio Saltarin 2022
+# Copyright (c) Alessio Saltarin 2022-23
 # This software is licensed under MIT License (see LICENSE)
 #
 
