@@ -17,6 +17,8 @@ import org.springframework.data.relational.core.query.Criteria;
 import org.springframework.stereotype.Service;
 import reactor.test.StepVerifier;
 
+import java.util.Arrays;
+
 import static org.springframework.data.relational.core.query.Query.query;
 
 @Service
@@ -35,7 +37,7 @@ public class DbInitializer implements ApplicationRunner
     @Override
     public void run(ApplicationArguments args)
     {
-        logger.info("Populating Database");
+        logger.info("Creating Database Table");
         this.template.getDatabaseClient().sql("CREATE TABLE IF NOT EXISTS person" +
                         "(id bigint auto_increment PRIMARY KEY," +
                         "name VARCHAR(255)," +
@@ -53,15 +55,24 @@ public class DbInitializer implements ApplicationRunner
         {
             logger.info("Person Table is empty. Populating it now.");
 
-            this.template.insert(Person.class)
-                    .using(new Person("Joe", "Doe", 34))
-                    .block();
+            var persons = Arrays.asList(
+                    new Person("Jack", "Bauer", 20),
+                    new Person("Chloe", "O'Brian", 18),
+                    new Person("Kim", "Rossi", 30),
+                    new Person("David", "Palmer", 45),
+                    new Person("Michelle", "Dessler", 56));
 
+            persons.forEach(person ->
+                    this.template.insert(Person.class)
+                            .using(person)
+                            .block());
+
+            // Verify that 5 records have been inserted
             this.template.select(Person.class)
-                    .first()
+                    .all()
                     .doOnNext(it -> logger.info(it.toString()))
                     .as(StepVerifier::create)
-                    .expectNextCount(1)
+                    .expectNextCount(5)
                     .verifyComplete();
         }
         else

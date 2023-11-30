@@ -15,7 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration
 class ReactRestApplicationTests
 {
-
 	@Test
 	void contextLoads()
 	{
