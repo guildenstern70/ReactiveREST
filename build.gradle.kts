@@ -32,8 +32,8 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.2.0")
     implementation("org.projectlombok:lombok")
     implementation("io.projectreactor:reactor-test")
+    implementation("com.h2database:h2")
 
-    runtimeOnly("com.h2database:h2")
     runtimeOnly("io.r2dbc:r2dbc-h2")
     annotationProcessor("org.projectlombok:lombok")
 
